@@ -1,0 +1,223 @@
+
+@font-face {
+	font-family: 'LeagueGothic';
+	src: url('fonts/League_Gothic-webfont.woff') format('woff'),
+		 url('fonts/League_Gothic-webfont.ttf') format('truetype'),
+		 url('fonts/League_Gothic-webfont.svg#LeagueGothicRegular') format('svg');
+	font-weight: bold;
+	font-style: normal;
+}
+
+* {
+	-webkit-touch-callout: none;
+	-webkit-user-select:none;
+	user-select:none;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+body, html {
+	margin:0;
+	height:100%;
+	background-color:#000;
+	overflow:hidden;
+}
+.canvas {
+	display:block;
+}
+
+
+
+
+
+/********************
+MENU
+********************/
+
+
+.button-menu, .button-clear {
+	position:absolute;
+	top:0;
+	width:47px;
+	height:47px;
+	color:#FFF;
+	border-style:solid;
+	border-color:#000;
+	font:bold 18px "LeagueGothic", "HelveticaNeue-CondensedBold", "Arial Narrow", sans-serif;
+	text-transform:uppercase;
+	z-index:15;
+	-webkit-transition:-webkit-transform 0.42s;
+	        transition:transform 0.42s;
+}
+
+.button-menu {
+	right:0;
+	background:#FDFDFD url(img/icon_menu.png) no-repeat 16px 8px;
+	padding:0 0 7px 7px;
+	border-radius:0 0 0 100px;
+	border-width:0 0 2px 2px;
+	color:transparent;
+}
+.button-menu:active {
+	background-color:#E5E5E5;
+}
+.button-menu.hidden {
+	-webkit-transform:translate3d(33px, -33px, 0);
+	        transform:translate3d(33px, -33px, 0);
+}
+
+.button-clear {
+	left:0;
+	background:#B22 url(img/icon_clear.png) no-repeat 7px 8px; /* 2265BB */
+	padding:0 7px 7px 0;
+	border-radius:0 0 100px 0;
+	border-width:0 2px 2px 0;
+}
+.button-clear:active {
+	background-color:#EB6666;
+}
+.button-clear.hidden {
+	-webkit-transform:translate3d(-33px, -33px, 0);
+	        transform:translate3d(-33px, -33px, 0);
+}
+
+@media (-webkit-min-device-pixel-ratio: 2) {
+	.button-clear {
+		background-image:url(img/icon_clear_2x.png);
+		background-size:21px;
+	}
+}
+
+
+#menu {
+	overflow:hidden;
+	position:absolute;
+	left:0;
+	top:50%;
+	width:100%;
+	margin:-163px 0 0 0;
+	padding:0;
+	-webkit-tap-highlight-color: rgba(255,0,0,0.5);
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-touch-callout:none;
+	list-style-type:none;
+	z-index:10;
+	visibility:hidden;
+}
+#menu.active {
+	visibility:visible;
+}
+
+
+
+#menu li {
+	width:300px;
+	position:relative;
+	left:50%;
+	margin-left:-150px;
+	margin-bottom:1em;
+	-webkit-transition:-webkit-transform 0.4s ease-in-out, 0s visibility 0.45s;
+}
+#menu.active li {
+	-webkit-transition:-webkit-transform 0.4s ease-in-out 0s;
+}
+#menu li:last-child {
+	margin-bottom:0;
+}
+#menu li a {
+	display:block;
+	height:41px;
+	padding:0 15px 0;
+	border-radius:20px;
+	background-color:#FFF;
+	color:#000;
+	text-decoration:none;
+	font:bold 30px/43px "LeagueGothic", "HelveticaNeue-CondensedBold", "Arial Narrow", sans-serif;
+	letter-spacing:1px;
+	text-transform:uppercase;
+}
+#menu li a:active {
+	background-color:#3B8DCA;
+}
+#menuObscure {
+	background:#000;
+	position:absolute;
+	width:100%;
+	height:100%;
+	left:0;
+	top:0;
+	/*display:none;*/
+	/*pointer-events:none;*/
+	height:0;
+	z-index:5;
+	opacity:0;
+	-webkit-transition:none;
+}
+#menuObscure.active {
+	/*display:block;*/
+	opacity:0.5;
+	height:100%;
+	-webkit-transition:opacity 0.5s;
+}
+#canvas {
+	display:block;
+	width:100%;
+	height:100%;
+}
+
+
+
+#menu li:nth-child(even) {
+	-webkit-transform:translate3d(310px, 0, 0);
+			transform:translate3d(310px, 0, 0);
+}
+#menu li:nth-child(odd) {
+	-webkit-transform:translate3d(-310px, 0, 0);
+			transform:translate3d(-310px, 0, 0);
+}
+
+
+@media all and (min-width:321px) {
+	#menu li:nth-child(even) {
+		-webkit-transform:translate3d(390px, 0, 0);
+	}
+	#menu li:nth-child(odd) {
+		-webkit-transform:translate3d(-390px, 0, 0);
+	}
+}
+
+
+@media all and (min-width:481px) {
+	#menu li:nth-child(even) {
+		-webkit-transform:translate3d(534px, 0, 0);
+	}
+	#menu li:nth-child(odd) {
+		-webkit-transform:translate3d(-534px, 0, 0);
+	}
+}
+
+
+@media all and (min-width:769px) {
+	#menu li:nth-child(even) {
+		-webkit-transform:translate3d(662px, 0, 0);
+	}
+	#menu li:nth-child(odd) {
+		-webkit-transform:translate3d(-662px, 0, 0);
+	}
+}
+
+
+#menu.active li {
+	-webkit-transform:translate3d(0, 0, 0);
+}
+
+
+@media all and (max-height:350px) {
+	#menu {
+		margin-top:-143px;
+	}
+	#menu li {
+		margin-bottom:0.5em;
+	}
+	#menu a {
+		height:37px;
+	}
+}
