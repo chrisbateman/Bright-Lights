@@ -732,18 +732,13 @@ var particles = function() {
 	var touchMoveEvent = function(ev) {
 		ev.preventDefault();
 		
-		var changedTouchesI = ev.changedTouches.length;
-		while (changedTouchesI--) {
-			var touch = ev.changedTouches[changedTouchesI];
-			
-			var forcesI = forces.length;
-			while (forcesI--) {
-				var thisForce = forces[forcesI];
-				if (touch.identifier === thisForce.id) {
-					thisForce.x = touch.clientX;
-					thisForce.y = touch.clientY;
-					continue;
-				}
+		var forcesI = forces.length;
+		while (forcesI--) {
+			var thisForce = forces[forcesI];
+			if (ev.pointerId === thisForce.id) {
+				thisForce.x = ev.clientX;
+				thisForce.y = ev.clientY;
+				continue;
 			}
 		}
 	};
@@ -751,36 +746,25 @@ var particles = function() {
 	var touchUpEvent = function(ev) {
 		ev.preventDefault();
 		
-		var changedTouchesI = ev.changedTouches.length;
-		while (changedTouchesI--) {
-			var touch = ev.changedTouches[changedTouchesI];
+		var forcesI = forces.length;
+		while (forcesI--) {
+			var thisForce = forces[forcesI];
 			
-			var forcesI = forces.length;
-			while (forcesI--) {
-				var thisForce = forces[forcesI];
-				
-				if (!thisForce.id || touch.identifier === thisForce.id) {
-					forces.splice(forcesI, 1);
-					continue;
-				}
+			if (!thisForce.id || ev.pointerId === thisForce.id) {
+				forces.splice(forcesI, 1);
+				continue;
 			}
 		}
 	};
 
 	var touchDownEvent = function(ev) {
-		var changedTouchesI = ev.changedTouches.length;
-		while (changedTouchesI--) {
-			var touch = ev.changedTouches[changedTouchesI];
-			
-			forces.push(new force({
-				x: touch.clientX,
-				y: touch.clientY,
-				strength: 600,
-				id: touch.identifier,
-				touch: touch
-			}));
-			
-		}
+        forces.push(new force({
+			x: ev.clientX,
+			y: ev.clientY,
+			strength: 600,
+			id: ev.pointerId,
+			touch: ev
+		}));
 	};
 
 	var touchCancelEvent = function(ev) {
@@ -862,10 +846,10 @@ var particles = function() {
 		window.addEventListener('orientationchange', resetCanvas, false);
 		window.addEventListener('touchmove', function(ev) { ev.preventDefault(); });
 		
-		canvas.addEventListener('touchstart', touchDownEvent);
-		canvas.addEventListener('touchmove', touchMoveEvent);
-		canvas.addEventListener('touchend', touchUpEvent);
-		canvas.addEventListener('touchcancel', touchCancelEvent);
+		canvas.addEventListener('pointerdown', touchDownEvent);
+		canvas.addEventListener('pointermove', touchMoveEvent);
+		canvas.addEventListener('pointerup', touchUpEvent);
+		canvas.addEventListener('pointercancel', touchCancelEvent);
 		
 		currentTheme = themes[0];
 		
