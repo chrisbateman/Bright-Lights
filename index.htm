@@ -13,8 +13,8 @@
 	
 	<div id="menuObscure"></div>
 	<ul id="menu"></ul>
-	<button id="MenuButton" class="button-menu" onclick="javascript:particles.showMenu();"></button>
-	<button id="ClearButton" class="button-clear hidden" onclick="javascript:particles.clearDraw();"></button>
+	<button id="MenuButton" class="button-menu" onclick="javascript:BrightLights.showMenu();"></button>
+	<button id="ClearButton" class="button-clear hidden" onclick="javascript:BrightLights.clearDraw();"></button>
 	
 	<div style="display:none;">
 		<img id="pImage1" src="img/brightlights.png" />
@@ -27,5 +27,15 @@
 	<script>HANDJS.doNotProcessCSS=true;</script>
 	<script src="external.js"></script>
 	<script src="main.js"></script>
+	<script>
+	BrightLights.initMenu({
+        0: "Bright Lights",
+        1: "Generate",
+        2: "Trails",
+        3: "Swarm",
+        4: "Fire",
+        5: "Draw"
+	});
+	</script>
 </body>
 </html>

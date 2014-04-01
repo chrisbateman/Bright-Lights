@@ -1,4 +1,4 @@
-var particles = function() {
+var BrightLights = (function() {
 	
 	
 	var canvas = document.getElementById("Canvas");
@@ -795,9 +795,9 @@ var particles = function() {
 		}
 		*/
 		
-		menuHtml = '';
+		var menuHtml = '';
 		for (var i in themes) {
-			menuHtml += '<li><a href="javascript:;" onclick="particles.reset(' + i + ');particles.hideMenu()">' + cfg[i] + '</a></li>';
+			menuHtml += '<li><a href="javascript:;" onclick="BrightLights.reset(' + i + ');BrightLights.hideMenu()">' + cfg[i] + '</a></li>';
 		}
 		
 		menu.innerHTML = menuHtml;
@@ -868,4 +868,4 @@ var particles = function() {
 		clearDraw: clearDraw
 	};
 
-}();
+})();
