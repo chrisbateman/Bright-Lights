@@ -13,4 +13,5 @@ I'm in the process of making some updates to make the app suitable for the open 
 
 **Needed Updates:**
  - Adjust menu animations to adapt to screens larger than 1024px
+ - Grunt, for building production app
  - Menu i18n
