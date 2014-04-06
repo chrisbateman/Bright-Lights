@@ -1,5 +1,9 @@
+/* Bright Lights
+ * http://github.com/chrisbateman/Bright-Lights
+ * Copyright (c) 2014 Chris Bateman
+ * Licensed under the MIT license */
+
 var BrightLights = (function() {
-	
 	
 	var canvas = document.getElementById("Canvas");
 	var ctx = canvas.getContext('2d');
@@ -34,6 +38,7 @@ var BrightLights = (function() {
 	var menuObscure = document.getElementById('menuObscure');
 	var menuButton = document.getElementById('MenuButton');
 	var clearButton = document.getElementById('ClearButton');
+    var menuItems;
 
 	var removeTimeout;
 
@@ -47,6 +52,7 @@ var BrightLights = (function() {
 	var path = [];
 	var pathCreateGap = 30;
 
+    // Could do higher res for retina screens - but it's not really worth it
 	//var pixelRatio = window.devicePixelRatio || 1;
 	var pixelRatio = 1;
 	
@@ -675,6 +681,7 @@ var BrightLights = (function() {
 		
 		postDrawFunction();
 		
+		// DEBUG - draw framerate
 		//ctx.fillStyle = 'rgb(255,255,255)';
 		//ctx.fillText((1000/smoothedDelta).toFixed(0) + ' (' + particles.length + ')', 20, 70);
 	};
@@ -802,6 +809,8 @@ var BrightLights = (function() {
 		
 		menu.innerHTML = menuHtml;
 		
+		menuItems = menu.querySelectorAll('li');
+		
 		var anchors = menu.querySelectorAll('a');
 		var anchorsLength = anchors.length;
 		
@@ -812,18 +821,38 @@ var BrightLights = (function() {
 		new FastClick(clearButton);
 	};
 
-
+    /**
+	 * @private
+	 * @description Sets the transform value of the menu items, so that
+	 * 				they're just off-screen
+	 **/
+    var setMenuPositions = function() {
+        var pos = ((window.innerWidth - 300) / 2) + 300;
+        
+        for (var i=0,iLen=menuItems.length; i<iLen; i++) {
+            var item = menuItems[i];
+            
+            item.style.webkitTransform = 'translate3d(' + pos + 'px, 0, 0)';
+            item.style.transform = 'translate3d(' + pos + 'px, 0, 0)';
+            
+            pos = -pos;
+        }
+    };
 
 	/**
 	* @private
 	* @description Shows the menu, calls function to remove particles
 	**/
 	var showMenu = function() {
-		menu.className = 'active';
+		setMenuPositions();
+		
+		window.setTimeout(function() {
+			menu.className = 'active';
+			currentTheme.onShowMenu();
+		}, 2);
+		
 		menuObscure.className = 'active';
 		menuButton.className = 'button-menu hidden';
-		
-		currentTheme.onShowMenu();
 	};
 
 	/**
@@ -831,7 +860,13 @@ var BrightLights = (function() {
 	* @description Hides the menu
 	**/
 	var hideMenu = function() {
-		menu.className = '';
+		setMenuPositions();
+		
+		menu.className = 'menu-out';
+		window.setTimeout(function() {
+			menu.className = '';
+		}, 400);
+		
 		menuObscure.className = '';
 		menuButton.className = 'button-menu';
 	};
