@@ -59,11 +59,19 @@ var BrightLights = (function() {
 	var drawSize = 30;
 	var smallDevice = false;
 	
-	/*
-	iPad    - 786432
-	iPhone5 - 181760
-	iPhone  - 153600
-	*/
+	
+
+
+	/**
+	 * @see http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/
+	 */
+	var requestAnimFrame = (function(){
+		return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || function(callback) {
+			window.setTimeout(callback, 1000 / 60);
+		};
+	})();
+
+
 
 	/**
 	* @private
@@ -82,10 +90,6 @@ var BrightLights = (function() {
 		fireImageCtx.fillStyle = radgrad;
 		fireImageCtx.fillRect(0,0,100,100);
 	})();
-
-
-
-
 
 
 
@@ -112,7 +116,11 @@ var BrightLights = (function() {
 		
 		canvasSizePowerRatio = (canvasWidth * canvasHeight) * 0.000000474 + 0.627184;
 		
-		
+		/*
+		iPad    - 786432
+		iPhone5 - 181760
+		iPhone  - 153600
+		*/
 		smallDevice = (canvasWidth * canvasHeight < 300000) ? true : false;
 		
 		if (smallDevice) {
@@ -717,7 +725,7 @@ var BrightLights = (function() {
 		draw();
 		
 		
-		animFrame = window.requestAnimationFrame(go);
+		animFrame = requestAnimFrame(go);
 	};
 
 
@@ -846,10 +854,10 @@ var BrightLights = (function() {
 	var showMenu = function() {
 		setMenuPositions();
 		
-		window.setTimeout(function() {
+		requestAnimFrame(function() {
 			menu.className = 'active';
 			currentTheme.onShowMenu();
-		}, 2);
+		});
 		
 		menuObscure.className = 'active';
 		menuButton.className = 'button-menu hidden';
