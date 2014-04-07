@@ -50,7 +50,7 @@ var BrightLights = (function() {
 	
 	
 	var path = [];
-	var pathCreateGap = 30;
+	var pathCreateGap;
 
     // Could do higher res for retina screens - but it's not really worth it
 	//var pixelRatio = window.devicePixelRatio || 1;
@@ -109,10 +109,12 @@ var BrightLights = (function() {
 		iPhone5 - 181760
 		iPhone  - 153600
 		*/
-		smallDevice = (canvasWidth * canvasHeight < 300000) ? true : false;
+		smallDevice = (canvasWidth * canvasHeight < 400000) ? true : false;
 		
 		if (smallDevice) {
 			pathCreateGap = 25;
+		} else {
+		    pathCreateGap = 30;
 		}
 	};
 	

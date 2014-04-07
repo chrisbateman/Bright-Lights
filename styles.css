@@ -44,6 +44,7 @@ MENUs
 	color:#FFF;
 	border-style:solid;
 	border-color:#000;
+	outline: none;
 	font:bold 18px "LeagueGothic", "HelveticaNeue-CondensedBold", "Arial Narrow", sans-serif;
 	text-transform:uppercase;
 	z-index:15;
