@@ -58,18 +58,6 @@ var BrightLights = (function() {
 	
 	var drawSize = 30;
 	var smallDevice = false;
-	
-	
-
-
-	/**
-	 * @see http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/
-	 */
-	var requestAnimFrame = (function(){
-		return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || function(callback) {
-			window.setTimeout(callback, 1000 / 60);
-		};
-	})();
 
 
 
@@ -725,7 +713,7 @@ var BrightLights = (function() {
 		draw();
 		
 		
-		animFrame = requestAnimFrame(go);
+		animFrame = window.requestAnimationFrame(go);
 	};
 
 
@@ -854,7 +842,7 @@ var BrightLights = (function() {
 	var showMenu = function() {
 		setMenuPositions();
 		
-		requestAnimFrame(function() {
+		window.requestAnimationFrame(function() {
 			menu.className = 'active';
 			currentTheme.onShowMenu();
 		});
