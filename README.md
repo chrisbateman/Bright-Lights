@@ -10,8 +10,5 @@ I'm in the process of making some updates to make the app suitable for the open 
 **Completed Updates:**
  - Switched from touch events to pointer events (hand.js as polyfill) 
  - Ported menu initialization from Objective-C
-
-**Needed Updates:**
  - Adjust menu animations to adapt to screens larger than 1024px
  - Grunt, for building production app
- - Menu i18n
