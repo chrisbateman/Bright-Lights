@@ -880,9 +880,9 @@ var BrightLights = (function() {
 		window.addEventListener('touchmove', function(ev) { ev.preventDefault(); });
 		
 		canvas.addEventListener('pointerdown', touchDownEvent);
-		canvas.addEventListener('pointermove', touchMoveEvent);
-		canvas.addEventListener('pointerup', touchUpEvent);
-		canvas.addEventListener('pointercancel', touchCancelEvent);
+		window.addEventListener('pointermove', touchMoveEvent);
+		window.addEventListener('pointerup', touchUpEvent);
+		window.addEventListener('pointercancel', touchCancelEvent);
 		
 		currentTheme = themes[0];
 		
