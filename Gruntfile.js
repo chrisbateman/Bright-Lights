@@ -54,6 +54,21 @@ module.exports = function(grunt) {
                     'build/index.htm': ['src/index.htm']
                 }
             }
+        },
+        manifest: {
+            generate: {
+                options: {
+                    basePath: 'build/',
+                    verbose: false
+                },
+                src: [
+                    '*.js',
+                    '*.css',
+                    'img/*',
+                    'fonts/*'
+                ],
+                dest: 'build/manifest.appcache'
+            }
         }
     });
     
@@ -63,8 +78,9 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-processhtml');
+    grunt.loadNpmTasks('grunt-manifest');
     
     
-    grunt.registerTask('default', ['copy', 'concat', 'uglify', 'cssmin', 'clean', 'processhtml']);
+    grunt.registerTask('default', ['copy', 'concat', 'uglify', 'cssmin', 'clean', 'processhtml', 'manifest']);
     
 };
