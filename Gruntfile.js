@@ -38,7 +38,7 @@ module.exports = function(grunt) {
         copy: {
             folders: {
                 cwd: 'src',
-                src: ['fonts/**', 'img/**'],
+                src: ['fonts/**'],
                 dest: 'build',
                 expand: true
             },
@@ -56,7 +56,7 @@ module.exports = function(grunt) {
             }
         },
         manifest: {
-            generate: {
+            build: {
                 options: {
                     basePath: 'build/',
                     verbose: false
@@ -69,6 +69,16 @@ module.exports = function(grunt) {
                 ],
                 dest: 'build/manifest.appcache'
             }
+        },
+        imagemin: {
+            build: {
+                files: [{
+                    expand: true,
+                    cwd: 'src/',
+                    src: ['img/*.{png,jpg,gif}'],
+                    dest: 'build/'
+                }]
+            }
         }
     });
     
@@ -79,6 +89,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-processhtml');
     grunt.loadNpmTasks('grunt-manifest');
+    grunt.loadNpmTasks('grunt-contrib-imagemin');
     
     
     grunt.registerTask('default', ['copy', 'concat', 'uglify', 'cssmin', 'clean', 'processhtml', 'manifest']);
