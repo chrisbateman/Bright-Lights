@@ -72,6 +72,9 @@ module.exports = function(grunt) {
         },
         imagemin: {
             build: {
+                options: {
+                    pngquant: true
+                },
                 files: [{
                     expand: true,
                     cwd: 'src/',
