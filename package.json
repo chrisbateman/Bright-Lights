@@ -1,8 +1,8 @@
 {
   "name": "Bright-Lights",
-  "version": "2.0.0",
-  "homepage": "http://github.com/chrisbateman/Bright-Lights/",
+  "homepage": "https://github.com/chrisbateman/Bright-Lights/",
   "author": "Chris Bateman",
+  "version": "2.0.0",
   "licenses": {
     "type": "MIT",
     "url": "https://raw.github.com/chrisbateman/bright-lights/master/LICENSE"
