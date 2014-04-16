@@ -1,6 +1,8 @@
 Bright Lights
 =============
 
+<img src="/screenshots/screen1.png" />
+
 Hosted [here](http://cbateman.com/apps/brightlights/).
 
 This is a simple particle toy, built with HTML5 Canvas. I made it a couple years ago for the iOS App Store (it's no longer available there). Good for kids, but pretty basic.
@@ -24,3 +26,11 @@ I've made a number of updates to make the app suitable for the open web:
  - npm install
  - grunt
  - grunt imagemin (only need to do this once, or when images are updated)
+
+*****
+
+<img src="/screenshots/screen2.png" />
+
+<img src="/screenshots/screen3.png" />
+
+<img src="/screenshots/screen4.png" />
